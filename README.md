@@ -19,3 +19,9 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+#### 登陆注册功能
+#### 首页，分类页面，购物车页面，用户中心页面开发
+#### 商品列表=》商品详情=》加入购物车sku=》生成订单=》支付成功流程
+#### 商品详情页微信分享功能操作，要有公众号
+#### 商品砍价，签到，领券，地址管理，。。。。功能
