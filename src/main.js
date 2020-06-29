@@ -3,6 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store  from "@/store/index";
+
+//设置axios对象
+//import axios from "axios";
+import axios from "@/utils/request";//引入axios封装的拦截器对象
+Vue.prototype.$axios = axios;//this.$axios
 
 Vue.config.productionTip = false
 
@@ -10,6 +16,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
