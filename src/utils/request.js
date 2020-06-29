@@ -24,6 +24,11 @@ Server.interceptors.request.use(function(config){
 
 //4. 使用Server方法创建响应拦截器  服务端数据返回到组件之前执行
 Server.interceptors.response.use(function(response){
+    console.log(response);
+    //判断接口返回的数据成功，直接返回数据中data数据
+    if(response.status == 200){
+        return response.data;
+    }
     return response;
 },function(error){
     return Promise.reject(error);

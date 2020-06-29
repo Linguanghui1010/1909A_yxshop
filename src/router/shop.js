@@ -1,4 +1,3 @@
-
 import Register  from  "@/views/login/register";
 
 // 定义一个变量

@@ -10,6 +10,11 @@ import store  from "@/store/index";
 import axios from "@/utils/request";//引入axios封装的拦截器对象
 Vue.prototype.$axios = axios;//this.$axios
 
+//引入vant组件信息
+import vant from "vant";
+import "vant/lib/index.css";
+Vue.use(vant);
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
