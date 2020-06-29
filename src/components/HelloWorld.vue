@@ -84,8 +84,16 @@
 </template>
 
 <script>
+import storage from "@/utils/storage";
 export default {
   name: 'HelloWorld',
+  mounted(){
+    let string = "hello storage";
+    let arr = [1,2,3,4];
+    // storage.set("test_yx",arr,true);
+    //console.log(storage.get("test_yx",true));
+    //storage.remove("test_yx");//删除的操作
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

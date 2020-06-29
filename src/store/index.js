@@ -4,7 +4,7 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 //定义一个对象
-const store = Vuex.Store({
+const store = new Vuex.Store({
     //数据池
     state:{
 
