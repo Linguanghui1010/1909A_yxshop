@@ -110,7 +110,9 @@ export default {
         this.$toast.fail("密码不一致，请重新输入");
         return false;
       }
-      this.$toast.success("恭喜你,注册成功");
+
+      this.submitRegister();//提交注册信息
+      
     },
     //生成图形验证码
     createImgCode(){
@@ -171,6 +173,30 @@ export default {
         }
         this.countSeconds();//调用倒计时的方法
       })
+    },
+
+    //提交注册
+    submitRegister(){
+      this.$axios({
+        url: "https://api.it120.cc/small4/user/m/register",
+        params:{
+          mobile: this.mobile,
+          pwd: this.pwd,
+          code: this.code,
+          nick: this.nick,
+          province: this.province,
+          city: this.city
+        }
+      }).then(res=>{
+        console.log(res);
+        if(res.code != 0){
+          this.$toast.fail(res.msg);
+          return false;
+        }
+        this.$toast.success("恭喜你,注册成功");
+        this.$router.push("/");
+      })
+
     }
 
   },
