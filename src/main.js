@@ -15,7 +15,22 @@ import vant from "vant";
 import "vant/lib/index.css";
 Vue.use(vant);
 
+//重置一些css样式，html- 50px
+import  "@/assets/style/reset.css";
+
+
 Vue.config.productionTip = false
+
+//全局路由守卫,进入组件之前触发
+router.beforeEach((to,from, next)=>{
+  
+  //判断路由是否设置title值，给组件添加标题内容
+  if(to.hasOwnProperty("meta")){
+    document.title = to.meta.title;
+  }
+
+  next();
+});
 
 /* eslint-disable no-new */
 new Vue({
