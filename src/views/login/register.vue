@@ -4,7 +4,7 @@
      <!-- 页面的主体css样式 -->
      <div id="login">
        <van-form>
-       <p class="login-head">新用户注册</p>
+       <p class="login-head">平台用户注册</p>
        <van-field placeholder="手机号" class="inp" v-model="mobile" right-icon="graphic" />
        <!-- 密码框 -->
        <van-field placeholder="密码" class="inp"  v-model="pwd"

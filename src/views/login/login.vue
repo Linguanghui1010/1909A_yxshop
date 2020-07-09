@@ -3,7 +3,7 @@
     <van-nav-bar title="用户登陆" left-arrow />
     <!-- 表单信息 -->
     <div id="login">
-      <p class="login-head">平台用户登陆</p>
+      <p class="login-head">严选商城用户登陆</p>
       <van-form>
         <van-field placeholder="用户名或手机号" class="inp" v-model="mobile" right-icon="graphic" />
         <van-field
