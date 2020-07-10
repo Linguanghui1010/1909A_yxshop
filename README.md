@@ -26,3 +26,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 #### 商品详情页微信分享功能操作，要有公众号
 #### 商品砍价，签到，领券，地址管理，。。。。功能
 #### vant-UI  vuex  本地存储
+
