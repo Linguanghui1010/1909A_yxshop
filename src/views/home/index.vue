@@ -1,166 +1,147 @@
 <template>
   <div class="box">
-    <div id="banner">
-        <!--轮播图区域-->
-        <van-swipe :autoplay="3000">
-            <van-swipe-item v-for="(item,index) in bannerList">
-                <img :src="item.picUrl"/>
-            </van-swipe-item>
-        </van-swipe>
-        <!--四个小按钮-->
-        <nav>
-            <ul>
-                <li>
-                    <van-icon name="like" size="50" color="#FF0000"/>
-                    <p>签到</p>
-                </li>
-                 <li>
-                    <van-icon name="bag" size="50" color="#FF0000"/>
-                    <p>礼券</p>
-                </li>
-                 <li>
-                    <van-icon name="coupon" size="50" color="#FF0000"/>
-                    <p>砍价</p>
-                </li>
-                 <li>
-                    <van-icon name="gift" size="50" color="#FF0000"/>
-                    <p>专栏</p>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <!-- 轮播图组件 -->
+    <Banner :bannerList="bannerList" />
 
     <div class="cut">
-        <p class="cut-head">砍价列表</p>
-        <!--砍价列表信息-->
-        <div class="item" v-for="(item,index) in cutList">
-            <div class="item-left">
-                <img :src="item.pic" />
-            </div>
-            <div class="item-right">
-                <p v-html="item.name"></p>
-                <p v-html="item.characteristic"></p>
-            </div>
-        </div>
+      <p class="cut-head">砍价列表</p>
+       <Cut :cutList="cutList" />
     </div>
-    
+
+    <Article :articleList="articleList"/>
+
+    <div class="goods">
+      <p class="goods-head">推荐列表</p>
+      <Goods  :goodsList="goodsList"/>
+    </div>
   </div>
 </template>
-
 <script>
+import Banner from "@/components/home/banner";
+import Cut from "@/components/home/cut";
+import Article from "@/components/home/article";
+import Goods from "@/components/home/goods";
 export default {
-  name: '',
+  name: "",
   mounted() {
-      this.getBanner();
-      this.getCutList();
+    this.getBanner();
+    this.getCutList();
+    this.getSpecial();
+    this.getGoodList();
   },
   data() {
     return {
-        bannerList: [],
-        cutList: [],
+      bannerList: [],
+      cutList: [],
+      articleList: [],
+      goodsList: []
     };
   },
-  computed:{
+  components:{
+    Banner,
+    Cut,
+    Article,
+    Goods,
   },
   methods: {
+    getBanner() {
+      //获取首页轮播图的区域的接口数据
+      this.$axios({
+        url: "https://api.it120.cc/small4/banner/list"
+      }).then(res => {
+        //判断数据是否为空
+        if (res.code == 0) {
+          this.bannerList = res.data;
+        }
+      });
+    },
+    //砍价列表
+    getCutList() {
+      this.$axios({
+        url: "https://api.it120.cc/small4/shop/goods/kanjia/list"
+      }).then(res => {
+        //取出对象中key只，并且截取
+        let ids = Object.keys(res.data.goodsMap).splice(-3);
+        let arr = [];
+        //通过key获取对象的value值，添加到数组中去
+        ids.forEach(item => {
+          arr.push(res.data.goodsMap[item]);
+        });
 
-      getBanner(){
-          //获取首页轮播图的区域的接口数据
-            this.$axios({
-                url: "https://api.it120.cc/small4/banner/list"
-            }).then(res=>{
-                //判断数据是否为空
-                if(res.code == 0){
-                    this.bannerList = res.data;
-                }
-               
-            })
-      },
+        this.cutList = arr;
+      });
+    },
 
-      getCutList(){
-          this.$axios({
-              url: "https://api.it120.cc/small4/shop/goods/kanjia/list"
-          }).then(res=>{
-              console.log(res);
+    //精选专题
+    getSpecial() {
+      this.$axios({
+        url: "https://api.it120.cc/small4/cms/news/list"
+      }).then(res => {
+        this.articleList = res.data;
+      });
+    },
+    //获取商品列表
+    getGoodList() {
+      this.$axios({
+        url: "https://api.it120.cc/small4/shop/goods/list"
+      }).then(res => {
+        let arr = res.data.filter(item => {
+          return item.name.indexOf("测试") == -1;
+        });
+        arr.sort(() => {
+          return Math.random() - 0.5;
+        });
 
-              if(res.code == 0){
-                  console.log(res.data.goodsMap);
-                  this.cutList = res.data.goodsMap;
-              }
-          })
-      }
-      
-  },
+        this.goodsList = arr.splice(-6);
+      });
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.box{
-    width: 100%;
-    background-color: #F0F0F0;
+.box {
+  width: 100%;
+  background-color: #f0f0f0;
+  padding-bottom: 0.88rem;
+  
 
-    #banner{
+  .cut {
     width: 100%;
-    margin-bottom: .2rem;
-    position: relative;
-
-    nav{
-        width: 100%;
-        padding: .3rem .12rem;
-        box-sizing: border-box;
-        position:absolute;
-        bottom: 0px;
-        background-color: #FFF;
-        border-top-left-radius: .2rem;
-        border-top-right-radius: .2rem;
-        ul{
-            width: 100%;
-            display:flex;
-            justify-content: space-around;
-            align-items: center;
-            li{
-                width:25%;
-                text-align:center;
-                p{
-                    margin-top: .12rem;
-                    font-size: .35rem;
-                }
-            }
-        }
+    background-color: #fff;
+    // 头部信息
+    .cut-head {
+      line-height: 0.88rem;
+      width: 100%;
+      font-size: 0.35rem;
+      text-align: center;
+      border-bottom: #dddddd 1px solid;
     }
-}
+    .cut-head::after {
+      content: ">";
+      font-size: 0.35rem;
+      margin-left: 0.15rem;
+    }
+    
+  }
 
-.cut{
+  //人气推荐商品
+  .goods {
     width: 100%;
-    background-color: #FFF;
-    .cut-head{
+    margin-top: 0.15rem;
+    background-color: #fff;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    .goods-head{
         line-height: .88rem;
-        width: 100%;
         font-size: .35rem;
-        text-align:center;
-    }
-    .item{
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        padding: .1rem;
-        box-sizing: border-box;
-        .item-left{
-            width: 30%;
-            padding: .1rem;
-            box-sizing: border-box;
-            img{
-                width: 100%;
-                border-radius: .1rem;
-            }
-        }
-        .item-right{
-            width: 70%;
-        }
+        text-align: center;
     }
+    .goods-head::after{
+        content:">";
+        margin-left: .3rem;
+    }
+  }
 }
-}
-
-
-
 </style>
