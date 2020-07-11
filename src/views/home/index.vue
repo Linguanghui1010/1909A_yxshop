@@ -4,14 +4,14 @@
     <Banner :bannerList="bannerList" />
 
     <div class="cut">
-      <p class="cut-head">砍价列表</p>
+      <router-link tag="p" to="/cutList" class="cut-head">砍价列表</router-link>
        <Cut :cutList="cutList" />
     </div>
 
     <Article :articleList="articleList"/>
 
     <div class="goods">
-      <p class="goods-head">推荐列表</p>
+      <router-link tag="p" to="/recommand" class="goods-head">推荐列表</router-link>
       <Goods  :goodsList="goodsList"/>
     </div>
   </div>
@@ -132,6 +132,7 @@ export default {
     background-color: #fff;
     padding: 0.2rem;
     box-sizing: border-box;
+    border-bottom: #dddddd 1px solid;
     .goods-head{
         line-height: .88rem;
         font-size: .35rem;

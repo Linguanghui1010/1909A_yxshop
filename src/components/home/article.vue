@@ -45,11 +45,14 @@ export default {
       border-radius: 0.2rem;
     }
     p {
-      line-height: 0.5rem;
+      line-height: 0.6rem;
       width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+    p:nth-of-type(2){
+      color: #808080;
     }
   }
 }

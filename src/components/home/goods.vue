@@ -41,6 +41,10 @@ export default {
       white-space: nowrap;
       line-height: 0.6rem;
     }
+    p:nth-of-type(2){
+      color: #FF0000;
+      font-size: .3rem;
+    }
   }
 }
 </style>
