@@ -2,7 +2,9 @@
   <div>
     <van-overlay :show="true">
       <div class="wrapper">
-        <van-loading size="34px" color="#FFF" vertical>加载中...</van-loading>
+        <van-loading size="50px" color="#FFF" vertical>
+          <span style=""></span>
+        </van-loading>
       </div>
     </van-overlay>
   </div>
