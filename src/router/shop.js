@@ -10,6 +10,9 @@ import Me from '@/views/home/me';
 import CutList from '@/views/goods/cutList';
 import Recommand from '@/views/goods/recommand';
 
+//分类商品
+import CateGoods from '@/views/goods/cateGoods';
+
 // 定义一个变量
 const shop = [
     //注册页面的路由
@@ -82,6 +85,13 @@ const shop = [
         component: Recommand,
         meta: {
             title: "严选商城-人气推荐"
+        }
+    },{
+        path: "/goods/cate/:id",
+        name: "goods_cate",
+        component: CateGoods,
+        meta: {
+            title: "严选商城-分类商品"
         }
     }
 ];

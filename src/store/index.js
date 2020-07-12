@@ -7,11 +7,13 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     //数据池
     state:{
-
+        loading: false,
     },
     //操作state的内容
     mutations:{
-
+        setLoading(state,payload){
+            state.loading = payload;
+        }
     },
     getters:{
 
