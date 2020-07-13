@@ -1,11 +1,12 @@
 <template>
   <div>
     <div class="goods-item">
-      <div class="g-item" v-for="(item,index) in goodsList" :key="index">
+      <router-link tag="div" class="g-item" v-for="(item,index) in goodsList" :key="index" :to="'/goods/info/'+item.id">
         <img :src="item.pic" />
         <p v-html="item.name"></p>
         <p>￥ {{item.originalPrice}}</p>
-      </div>
+      </router-link>
+      <!-- <div class="g-item" v-for="(item,index) in goodsList" :key="index"></div> -->
     </div>
   </div>
 </template>
@@ -13,7 +14,7 @@
 <script>
 export default {
   name: "",
-  props:['goodsList'],
+  props: ["goodsList"],
   data() {
     return {};
   },
@@ -41,9 +42,9 @@ export default {
       white-space: nowrap;
       line-height: 0.6rem;
     }
-    p:nth-of-type(2){
-      color: #FF0000;
-      font-size: .3rem;
+    p:nth-of-type(2) {
+      color: #ff0000;
+      font-size: 0.3rem;
     }
   }
 }

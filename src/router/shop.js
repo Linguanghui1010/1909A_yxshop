@@ -18,6 +18,8 @@ import CateGoods from '@/views/goods/cateGoods';
 import Special from "@/views/article/special";//页面列表
 import articleDetail from "@/views/article/detail";//文章详情
 
+import goodsInfo from "@/views/goods/goodsInfo";//商品详情页面
+
 
 // 定义一个变量
 const shop = [
@@ -120,6 +122,13 @@ const shop = [
         component: articleDetail,
         meta: {
             title: "严选商城-文章详情"
+        }
+    },{
+        path: "/goods/info/:id",
+        name: "goods_info",
+        component: goodsInfo,
+        meta: {
+            title: "严选商城-商品详情页面"
         }
     }
 ];
