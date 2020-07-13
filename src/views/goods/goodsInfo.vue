@@ -27,7 +27,7 @@
       <van-goods-action-button type="danger" text="加入购物车" />
     </van-goods-action>
 
-    <div class="arrow">
+    <div class="arrow" @click="goBack">
         <van-icon name="arrow-left" size="30"/>
     </div>
   </div>
@@ -62,6 +62,9 @@ export default {
         this.banners = res.data.pics;
         this.content = res.data.content;
       });
+    },
+    goBack(){
+        this.$router.go(-1);
     }
   }
 };
@@ -88,7 +91,9 @@ export default {
   }
   .arrow{
       padding: .1rem;
-      background: #808080;
+      box-sizing: border-box;
+      background: #F0F0F0;
+      border-radius: 50%;
       position: fixed;
       top: .5rem;
       left: .3rem;
