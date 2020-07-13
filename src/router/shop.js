@@ -9,6 +9,7 @@ import Category from '@/views/home/category';
 import Me from '@/views/home/me';
 import CutList from '@/views/goods/cutList';
 import Recommand from '@/views/goods/recommand';
+import Search from '@/views/goods/search';
 
 //分类商品
 import CateGoods from '@/views/goods/cateGoods';
@@ -92,6 +93,13 @@ const shop = [
         component: CateGoods,
         meta: {
             title: "严选商城-分类商品"
+        }
+    },{
+        path: "/goods/search",
+        name: "goods_search",
+        component: Search,
+        meta: {
+            title: "严选商城-商品搜索"
         }
     }
 ];

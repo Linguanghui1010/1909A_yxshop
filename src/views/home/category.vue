@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-search placeholder="输入搜索的商品名字" />
+    <van-search placeholder="输入搜索的商品名字" @focus="goSearch"/>
     <!-- 分类列表数据 -->
     <div>
       <van-tree-select
@@ -77,6 +77,10 @@ export default {
     //点击切换左侧菜单
     changeLeft(index) {
       console.log(this.cateIds[index]);
+    },
+    goSearch(){
+      
+      this.$router.push("/goods/search");
     }
   }
 };
