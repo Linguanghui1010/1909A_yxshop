@@ -21,10 +21,10 @@
           <van-icon name="coupon" size="50" color="#FF0000" />
           <p>砍价</p>
         </router-link>
-        <li>
+        <router-link tag="li" to="/article/special">
           <van-icon name="gift" size="50" color="#FF0000" />
           <p>专栏</p>
-        </li>
+        </router-link>
       </ul>
     </nav>
   </div>
