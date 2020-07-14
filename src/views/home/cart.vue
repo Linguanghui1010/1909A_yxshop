@@ -22,6 +22,7 @@ export default {
   name: "",
   mounted() {
     this.cartList = this.$store.state.cartList;
+    console.log(this.checked);
   },
   data() {
     return {
@@ -50,7 +51,7 @@ export default {
         let arr = value.filter(item=>{
           return item.checked == true;
         });
-        
+
         if(value.length == arr.length){
           this.checked = true;
         }else{
