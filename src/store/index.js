@@ -19,8 +19,24 @@ const store = new Vuex.Store({
     },
     //操作state的内容
     mutations:{
+        //设置loading
         setLoading(state,payload){
             state.loading = payload;
+        },
+        //添加购物车的操作
+        addCart(state,payload){
+            state.cartList = payload;
+        },
+        countCarts(state){
+            console.log("test");
+            let tmp = 0;
+            //遍历购物车的数量
+            console.log(state.cartList);
+            state.cartList.forEach(item=>{
+                tmp += item.nums;
+            })
+            //计算总数量
+            state.nums = tmp;
         }
     },
     getters:{
