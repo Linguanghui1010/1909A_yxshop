@@ -16,6 +16,9 @@ const store = new Vuex.Store({
         loading: false,
         cartList:[],//购物车列表
         nums: 0,//总数量
+
+        orderList:[],//存储订单商品列表
+        orderInfo:[],
     },
     //操作state的内容
     mutations:{
@@ -37,10 +40,25 @@ const store = new Vuex.Store({
             })
             //计算总数量
             state.nums = tmp;
+        },
+        setOrderList(state){
+            state.orderList = state.cartList.filter(item=>{
+                return item.checked == true;
+            });
+        },
+        setOrder(state,payload){
+            state.orderInfo = payload;
         }
     },
     getters:{
+        totalAmounts(state){
+            let amount = 0;
+            state.orderList.forEach(item=>{
+                amount += item.price*item.nums;
+            });
 
+            return amount;
+        }
     },
     actions:{
 

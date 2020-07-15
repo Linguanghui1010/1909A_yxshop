@@ -19,7 +19,7 @@ const Server = axios.create({
 
 //3. 使用server方法创建请求拦截器, 请求发送出去之前执行的
 Server.interceptors.request.use(function(config){
-
+    config.headers['Content-Type'] = 'multipart/form-data; charset=UTF-8';
     store.commit("setLoading",true);//设置loading加载组件
     return config;
 },function(error){

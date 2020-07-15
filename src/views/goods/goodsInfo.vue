@@ -34,6 +34,7 @@
       :goods="goods"
       :custom-stepper-config="customStepperConfig"
       @add-cart="addCart"
+      @sku-selected="selectedSku"
     />
 
     <!-- 返回按钮 -->
@@ -96,8 +97,11 @@ export default {
           this.nums = currentValue;
         }
       },
-      nums: 1
+      nums: 1,
+      propertyIds: "",//选中商品的sku的数据
       //sku的商品数据
+
+    
     };
   },
   computed: {},
@@ -159,6 +163,12 @@ export default {
       this.sku.tree = tree;
       this.sku.list = list;
     },
+    //切换规格的时候触发
+    selectedSku(data){
+      console.log(data);
+
+      this.propertyIds = `${data.skuValue.propertyId}:${data.skuValue.id}`;
+    },
     //加入购物车
     addCart() {
       let data = localStorage.getItem("09A_user");
@@ -188,7 +198,7 @@ export default {
         object.name = this.goodsInfo.name;
         object.price = this.goodsInfo.originalPrice;
         object.nums = this.nums;
-        object.properties = "";
+        object.properties = this.propertyIds;//商品sku规格信息
         object.checked = true;
         object.pic = this.goods.picture;
         cartList.push(object);

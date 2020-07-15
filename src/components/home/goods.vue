@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="lists">
     <div class="goods-item">
       <router-link tag="div" class="g-item" v-for="(item,index) in goodsList" :key="index" :to="'/goods/info/'+item.id">
-        <img :src="item.pic" />
+        <img :src="''" :data-src="item.pic" />
         <p v-html="item.name"></p>
         <p>￥ {{item.originalPrice}}</p>
       </router-link>
@@ -14,6 +14,8 @@
 <script>
 export default {
   name: "",
+  mounted() {
+  },
   props: ["goodsList"],
   data() {
     return {};
@@ -24,6 +26,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.list{
+  overflow: hidden;
+}
 .goods-item {
   width: 100%;
   display: flex;

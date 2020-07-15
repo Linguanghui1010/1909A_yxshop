@@ -19,6 +19,9 @@ import Special from "@/views/article/special";//页面列表
 import articleDetail from "@/views/article/detail";//文章详情
 
 import goodsInfo from "@/views/goods/goodsInfo";//商品详情页面
+// 订单相关的路由
+
+import orderConfirm from "@/views/order/orderConfirm";
 
 
 // 定义一个变量
@@ -129,6 +132,13 @@ const shop = [
         component: goodsInfo,
         meta: {
             title: "严选商城-商品详情页面"
+        }
+    },{
+        path: "/order/confirm",
+        name: "order_confirm",
+        component: orderConfirm,
+        meta: {
+            title: "严选商城-订单确认"
         }
     }
 ];
