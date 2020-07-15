@@ -94,15 +94,6 @@ export default {
             object.logisticsType = 0;
             arr.push(object);
         });
-
-        //实例化formdata
-        let param = new FormData()
-        param.append('token', data.token);
-        param.append('goodsJsonStr', JSON.stringify(arr));
-        this.$axios.post("https://api.it120.cc/small4/order/create",param).then(res=>{
-            console.log(res);
-            this.$store.commit("setOrder",res.data);
-        });
     }
   }
 };
