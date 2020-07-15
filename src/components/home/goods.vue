@@ -2,7 +2,7 @@
   <div class="lists">
     <div class="goods-item">
       <router-link tag="div" class="g-item" v-for="(item,index) in goodsList" :key="index" :to="'/goods/info/'+item.id">
-        <img :src="''" :data-src="item.pic" />
+        <img :src="item.pic" />
         <p v-html="item.name"></p>
         <p>￥ {{item.originalPrice}}</p>
       </router-link>

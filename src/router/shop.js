@@ -22,6 +22,7 @@ import goodsInfo from "@/views/goods/goodsInfo";//商品详情页面
 // 订单相关的路由
 
 import orderConfirm from "@/views/order/orderConfirm";
+import orderPay from "@/views/order/orderPay";
 
 
 // 定义一个变量
@@ -139,6 +140,13 @@ const shop = [
         component: orderConfirm,
         meta: {
             title: "严选商城-订单确认"
+        }
+    },{
+        path: "/order/pay",
+        name: "order_pay",
+        component: orderPay,
+        meta: {
+            title: "严选商城-确认付款"
         }
     }
 ];

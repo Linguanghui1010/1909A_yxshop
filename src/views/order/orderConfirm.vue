@@ -81,11 +81,11 @@ export default {
     },
     //创建订单的信息
     createOrder(){
-        let data = storage.get("09A_user", true);
+        //获取用户的登录信息
+        let user = storage.get("09A_user", true);
 
         //组装一下商品的数据
         let arr = [];
-
         this.$store.state.orderList.forEach(item=>{
             let object = new Object();
             object.goodsId = item.goods_id;
@@ -94,6 +94,26 @@ export default {
             object.logisticsType = 0;
             arr.push(object);
         });
+
+        //创建订单的接口数据
+        //创建formDate的数据
+        let formdata = new FormData();
+        formdata.append("token",user.token);
+        formdata.append("goodsJsonStr",JSON.stringify(arr));
+
+        this.$axios.post("https://api.it120.cc/small4/order/create",
+        formdata).then(res=>{
+            this.$toast.loading({
+                message:"订单正在努力生成中",
+                overlay: true,
+            });
+            this.$store.commit("setOrder",res.data);
+
+            setTimeout(()=>{
+                this.$router.push("/order/pay");
+            },2000);
+            
+        })
     }
   }
 };
@@ -113,6 +133,9 @@ export default {
     align-items: center;
     background: #fff;
     border-bottom: #dddddd 2px solid;
+    div:nth-of-type(2){
+        width: 80%;
+    }
     p {
       line-height: 0.6rem;
     }

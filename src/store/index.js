@@ -48,6 +48,12 @@ const store = new Vuex.Store({
         },
         setOrder(state,payload){
             state.orderInfo = payload;
+        },
+
+        clear(state){
+            state.cartList = [];
+            state.nums = 0;
+            state.orderInfo = [];
         }
     },
     getters:{
